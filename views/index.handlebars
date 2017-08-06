@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="jumbotron red lighten-4" id="tagline">
+    <h1 class="center-align indigo-text">Eat-Da-Burger</h1> 
+    <h5 class="center-align indigo-text">Click on a burger to eat it, or type in your own!</h5> 
+    </div>
+
+<main>
+  <div class="container">
+    <div class="row">
+      <div class="col s4 card-panel hoverable left-align">
+        <h4 class='yellow accent-2 blue-text'>Burgers available to eat!</h4>
+        {{#each burgers}}
+          {{#unless this.devoured}}
+            <div>
+              <form action="/burgers/create/{{this.id}}?_method=PUT" method="POST">
+                <button type="submit" class='burgerAvailable'> {{this.burger_name}}</button>
+              </form>
+            </div>
+          {{/unless}}
+        {{/each}}
+      </div>
+      <div class="col s4 center-align">
+      <p class="red-text">Enjoy!</p>
+      <img src="https://t3.ftcdn.net/jpg/01/52/38/74/160_F_152387482_ZyoBXqSe0r6FhhEJMUfNkL6EmXFoPk0o.jpg" alt="angry burger">
+      </div>
+
+      <div class="col s4 card-panel hoverable right-align">
+      <h4 class='blue accent-2 yellow-text'>Burgers that have been eaten!</h4>
+        {{#each burgers}}
+          {{#if this.devoured}}
+            <div class='burgerEaten'>
+              <div>
+                {{this.burger_name}}
+              </div>
+            </div>
+          {{/if}}
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</main>
+
+<h3 class="center-align hoverable red lighten-4 indigo-text">Add A Burger Option</h3>
+
+<div class="row">
+  <div class="col s12">
+    <form action="/burgers/create" method="POST" class="center-align">
+      <input type="text" id="name" name="burger_name" placeholder="Enter your burger here!" class="center-align">
+      <button type="submit" class="addBurgerButton hoverable red lighten-4 indigo-text" >Add The Burger</button>
+    </form>
+  </div>
+</div>
